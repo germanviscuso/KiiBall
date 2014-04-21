@@ -6705,9 +6705,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 2143345339}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &89198794
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17703,9 +17704,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 906459193}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &397217106
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19860,9 +19862,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 93587215}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &467935082
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22175,9 +22178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1035748135}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &557621521
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22518,9 +22522,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 50937836}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &570800613
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26224,9 +26229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 996259423}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &804097404
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27862,9 +27868,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 239216857}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &834404545
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28030,9 +28037,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1421046447}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &836157986
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29565,9 +29573,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1947658032}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &848708584
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34626,9 +34635,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1511641183}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &951912246
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39912,9 +39922,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1411440984}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1047385028
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42933,7 +42944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 500
-  verticalThrust: 10
+  verticalThrust: 0
   winningHalo: {fileID: 990186108}
 --- !u!1 &1096353616
 GameObject:
@@ -64790,9 +64801,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 185552301}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1384515343
 AudioSource:
   m_ObjectHideFlags: 0
@@ -66393,9 +66405,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1634124078}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1405109241
 AudioSource:
   m_ObjectHideFlags: 0
@@ -75127,9 +75140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1821459087}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1533014847
 AudioSource:
   m_ObjectHideFlags: 0
@@ -76862,9 +76876,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1728160010}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1632747353
 AudioSource:
   m_ObjectHideFlags: 0
@@ -79604,9 +79619,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1527707268}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1661209417
 AudioSource:
   m_ObjectHideFlags: 0
@@ -80700,9 +80716,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 884138197}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1722229213
 AudioSource:
   m_ObjectHideFlags: 0
@@ -86009,9 +86026,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 56696252}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1851425474
 AudioSource:
   m_ObjectHideFlags: 0
@@ -86240,9 +86258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1402393648}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1859487853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -86582,9 +86601,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 884656923}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &1880579384
 AudioSource:
   m_ObjectHideFlags: 0
@@ -91572,9 +91592,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 449486802}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &2002667241
 AudioSource:
   m_ObjectHideFlags: 0
@@ -94041,9 +94062,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 50864475}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!82 &2074047751
 AudioSource:
   m_ObjectHideFlags: 0

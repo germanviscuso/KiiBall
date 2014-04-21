@@ -216,9 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 19800002}
-  explosionRadius: 5
-  explosionPower: 150
+  explosionRadius: 1
+  explosionPower: 200
   explosionUpwardsModifier: 0
+  explosionChainReaction: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
