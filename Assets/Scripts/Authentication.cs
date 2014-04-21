@@ -105,7 +105,7 @@ public class Authentication : MonoBehaviour {
 		if (!FB.IsLoggedIn)
 		{
 			GUI.backgroundColor = new Color(0,0,0,0);
-			Rect rect = new Rect(10 , 10, 256, 64);
+			Rect rect = new Rect(0 , 50, 256, 64);
 			if (GUI.Button(rect, facebookButton)){
 				FB.Login("basic_info,email,publish_actions", LoginCallback);
 			}

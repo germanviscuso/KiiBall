@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour {
 	public float verticalThrust;
 	public ParticleSystem winningHalo;
 	private int count;
-	private const int totalCount = 22;
+	private int totalCount = 0;
+	private float time = 0;
 
 	void Start(){
 		count = 0;
+		var gos = GameObject.FindGameObjectsWithTag("PickUp");
+		totalCount = gos.Length;
 	}
 
 	void Update(){
@@ -37,5 +40,18 @@ public class PlayerController : MonoBehaviour {
 		count++;
 		if(count == totalCount)
 			winningHalo.Play();
+	}
+
+	void OnGUI(){
+		var style = new GUIStyle("label");
+		style.fontSize = 22;
+		GUI.color = Color.white;
+		Rect rect = new Rect(12 , 10, 275, 40);
+		if(count != totalCount)
+			time = Time.timeSinceLevelLoad;
+		//else {
+			// send score to backend
+		//}
+		GUI.Label(rect, "Score: " + count.ToString() + "/"+ totalCount.ToString() + " Time: " + time.ToString("n2"), style);
 	}
 }
