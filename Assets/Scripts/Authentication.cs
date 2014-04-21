@@ -12,10 +12,12 @@ public class Authentication : MonoBehaviour {
 	private static bool initialized = false;
 	
 	void Awake(){
-		// Initialize FB SDK              
+		// Initialize FB SDK 
+		if(!FB.IsLoggedIn)
+			OnHideUnity (false);
 		enabled = false;
 		if(!initialized){
-			FB.Init(SetInit, OnHideUnity);
+			FB.Init(SetInit);
 			initialized = true;
 		}
 	}
@@ -30,7 +32,7 @@ public class Authentication : MonoBehaviour {
 		enabled = true; // "enabled" is a property inherited from MonoBehaviour                  
 		if (FB.IsLoggedIn)                                                                       
 		{                                                                                        
-			Util.Log("Already logged in");                                                    
+			Util.Log("Already FB logged in");                                                    
 			OnLoggedIn();                                                                        
 		}                                                                                        
 	}                                                                                            
@@ -52,7 +54,7 @@ public class Authentication : MonoBehaviour {
 
 	void LoginCallback(FBResult result)
 	{
-		Util.Log("LoginCallback");
+		Util.Log("FB LoginCallback");
 		
 		if (FB.IsLoggedIn)
 		{
@@ -84,6 +86,7 @@ public class Authentication : MonoBehaviour {
 			Util.LogError(e.InnerException.ToString());
 			return;
 		}
+		OnHideUnity (true);
 		Util.Log("Kii Logged in. URI: " + KiiUser.CurrentUser.Uri.ToString());
 		Util.Log("Kii Logged in. Username: " + KiiUser.CurrentUser.Username);
 		// Now you have a logged in Kii user via Facebook ( -> KiiUser.CurrentUser)
@@ -114,7 +117,7 @@ public class Authentication : MonoBehaviour {
 
 	void APICallback(FBResult result)                                                                                              
 	{                                                                                                                              
-		Util.Log("APICallback");                                                                                                
+		Util.Log("FB APICallback");                                                                                                
 		if (result.Error != null)                                                                                                  
 		{                                                                                                                          
 			Util.LogError(result.Error);                                                                                           

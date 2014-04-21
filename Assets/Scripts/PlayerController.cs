@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using KiiCorp.Cloud.Storage;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
 	public int speedMultiplier;
 	public float verticalThrust;
 	public ParticleSystem winningHalo;
-	private int count;
-	private int totalCount = 0;
-	private float time = 0;
+	private int pickupCount;
+	private int totalPickupCount = 0;
+	private float gameTime = 0;
+	public static string appScopeScoreBucket = "global_scores";
+	private bool scoreSent = false;
 
 	void Start(){
-		count = 0;
+		gameTime = 0;
+		pickupCount = 0;
 		var gos = GameObject.FindGameObjectsWithTag("PickUp");
-		totalCount = gos.Length;
+		totalPickupCount = gos.Length;
 	}
 
 	void Update(){
@@ -37,21 +42,40 @@ public class PlayerController : MonoBehaviour {
 	}*/
 
 	void IncrementScore(){
-		count++;
-		if(count == totalCount)
+		pickupCount++;
+		if(pickupCount == totalPickupCount)
 			winningHalo.Play();
 	}
 
 	void OnGUI(){
-		var style = new GUIStyle("label");
+		var style = new GUIStyle("Label");
 		style.fontSize = 22;
 		GUI.color = Color.white;
 		Rect rect = new Rect(12 , 10, 275, 40);
-		if(count != totalCount)
-			time = Time.timeSinceLevelLoad;
-		//else {
+		if(pickupCount != totalPickupCount)
+			gameTime = Time.timeSinceLevelLoad;
+		else {
 			// send score to backend
-		//}
-		GUI.Label(rect, "Score: " + count.ToString() + "/"+ totalCount.ToString() + " Time: " + time.ToString("n2"), style);
+			if(KiiUser.CurrentUser != null && !scoreSent){
+				scoreSent = true;
+				SendScore ();
+			}
+		}
+		GUI.Label(rect, "Score: " + pickupCount.ToString() + "/"+ totalPickupCount.ToString() + " Time: " + gameTime.ToString("n2"), style);
+	}
+
+	void SendScore(){
+		KiiBucket bucket = Kii.Bucket(appScopeScoreBucket);
+		KiiObject score = bucket.NewKiiObject();
+		score["time"] = gameTime;
+		score["username"] = KiiUser.CurrentUser.Username;
+		// score is game completion time, the lower the better
+		Util.Log ("Saving score to Kii Cloud...");
+		score.Save((KiiObject obj, Exception e) => {
+			if (e != null)
+				Util.LogError(e.ToString());
+			else
+				Util.Log("Score sent to Kii Cloud: " + gameTime.ToString("n2"));
+		});
 	}
 }
