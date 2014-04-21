@@ -2,11 +2,18 @@
 using System.Collections;
 
 public class PickupController : MonoBehaviour {
-
+	
 	public ParticleSystem explosion;
-	public float explosionRadius = 5.0F;
-	public float explosionPower = 175.0F;
+	public float explosionRadius = 1.0F;
+	public float explosionPower = 200.0F;
 	public float explosionUpwardsModifier = 0.0F;
+	public bool explosionChainReaction = false;
+	private bool exploded = false;
+	private GameObject player;
+
+	void Start(){
+		player = GameObject.Find("player");
+	}
 
 	void OnCollisionEnter(Collision collision) {
 		var obj = collision.collider.gameObject;
@@ -16,6 +23,10 @@ public class PickupController : MonoBehaviour {
 	}
 
 	void Explode(){
+		if(exploded)
+			return;
+		exploded = true;
+		player.SendMessage("IncrementScore");
 		// Explosion particle animation
 		explosion.Play();
 		// Explosion sound
@@ -24,8 +35,12 @@ public class PickupController : MonoBehaviour {
 		Vector3 explosionPos = gameObject.transform.position;
 		Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
 		foreach (Collider hit in colliders) {
-			if (hit && hit.rigidbody)
-				hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius, explosionUpwardsModifier, ForceMode.Force);	
+			if (hit && hit.rigidbody){
+				hit.rigidbody.AddExplosionForce(explosionPower, explosionPos, explosionRadius, explosionUpwardsModifier, ForceMode.Force);
+				if(hit.gameObject.tag == "PickUp" && explosionChainReaction){
+					hit.gameObject.SendMessage("Explode");
+				}
+			}
 		}
 		// Vanish Pickup
 		renderer.enabled = false;

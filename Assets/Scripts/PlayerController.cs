@@ -27,12 +27,15 @@ public class PlayerController : MonoBehaviour {
 		rigidbody.AddForce(movement * speedMultiplier * Time.deltaTime);
 	}
 
-	void OnCollisionEnter(Collision collision) {
+	/*void OnCollisionEnter(Collision collision) {
 		var obj = collision.collider.gameObject;
-		if(obj.tag == "PickUp"){
-			count++;
-			if(count == totalCount)
-				winningHalo.Play();
-		}
+		if(obj.tag == "PickUp")
+			IncrementScore();
+	}*/
+
+	void IncrementScore(){
+		count++;
+		if(count == totalCount)
+			winningHalo.Play();
 	}
 }
