@@ -6,10 +6,11 @@ using System.Collections.Generic;
 
 public class Authentication : MonoBehaviour {
 
+	private Texture2D facebookButton;
 	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static bool initialized = false;
-
+	
 	void Awake(){
 		// Initialize FB SDK              
 		enabled = false;
@@ -17,6 +18,10 @@ public class Authentication : MonoBehaviour {
 			FB.Init(SetInit, OnHideUnity);
 			initialized = true;
 		}
+	}
+
+	void Start(){
+		facebookButton = (Texture2D)Resources.Load("login_with_facebook");
 	}
 
 	private void SetInit()                                                                       
@@ -47,7 +52,7 @@ public class Authentication : MonoBehaviour {
 
 	void LoginCallback(FBResult result)
 	{
-		Debug.Log("LoginCallback");
+		Util.Log("LoginCallback");
 		
 		if (FB.IsLoggedIn)
 		{
@@ -99,9 +104,9 @@ public class Authentication : MonoBehaviour {
 	{	
 		if (!FB.IsLoggedIn)
 		{
-			GUI.Label( (new Rect(179 , 11, 287, 160)), "Login to Facebook:");
-			if (GUI.Button(new Rect(179 , 11, 287, 140), "Login"))
-			{
+			GUI.backgroundColor = new Color(0,0,0,0);
+			Rect rect = new Rect(10 , 10, 256, 64);
+			if (GUI.Button(rect, facebookButton)){
 				FB.Login("basic_info,email,publish_actions", LoginCallback);
 			}
 		}

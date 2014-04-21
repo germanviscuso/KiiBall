@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 153e1797526aac0468914adaeb417537
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - LogOnTexture: {fileID: 2800000, guid: 0e7238d3add95429eb833f5ecd7026a5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
