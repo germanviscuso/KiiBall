@@ -79,27 +79,33 @@ public class Authentication : MonoBehaviour {
 		onKiiCallback = true;
 		KiiUser.LoginWithFacebookToken(FB.AccessToken, (KiiUser user2, Exception e) => {
 			if (e == null) {
-				Debug.Log ("Kii Login completed");
+				Util.Log ("Kii Login completed");
 				user = user2;
 				onKiiCallback = false;
 				Util.Log("Kii Logged in. URI: " + KiiUser.CurrentUser.Uri.ToString());
 				Util.Log("Kii Logged in. Username: " + KiiUser.CurrentUser.Username);
 				// Now you have a logged in Kii user via Facebook ( -> KiiUser.CurrentUser)
 				// And you can update the user attributes from Facebook data
-				/*user.Username = FB.UserId;
 				if(profile != null){
 					//KiiUser.ChangeEmail(facebookEmail); 
 					//KiiUser.ChangePhone(facebookPhone);
 					user.Displayname = profile["first_name"];
 				}
-				user.Update();
+				user.Update((KiiUser user3, Exception e2) => {
+					if (e2 == null) {
+						Util.Log ("Kii user update completed");
+					}
+					else{
+						Util.LogError ("Kii user update failed: " + e2.ToString());
+					}
+				});
 				Util.Log("Current user email is: " + KiiUser.CurrentUser.Email);
 				Util.Log("Current user name is: " + KiiUser.CurrentUser.Displayname);
-				Util.Log("Current user phone is: " + KiiUser.CurrentUser.Phone);*/
+				Util.Log("Current user phone is: " + KiiUser.CurrentUser.Phone);
 			} else {
 				user = null;
 				onKiiCallback = false;
-				Debug.Log ("Kii Login failed: " + e.ToString());
+				Util.LogError ("Kii Login failed: " + e.ToString());
 				Util.LogError(e.InnerException.ToString());
 				return;
 			}

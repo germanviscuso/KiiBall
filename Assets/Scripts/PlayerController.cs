@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 		var style = new GUIStyle("Label");
 		style.fontSize = 22;
 		GUI.color = Color.white;
-		Rect rect = new Rect(12 , 10, 275, 40);
+		Rect rect = new Rect(12 , 10, 300, 40);
 		if(pickupCount != totalPickupCount)
 			gameTime = Time.timeSinceLevelLoad;
 		else {
@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour {
 				scoreSent = true;
 				SendScore ();
 			}
+		}
+		if( KiiUser.CurrentUser != null){
+			Rect rect2 = new Rect(12 , 40, 200, 40);
+			GUI.Label(rect2, "User: " + KiiUser.CurrentUser.Displayname, style);
 		}
 		GUI.Label(rect, "Score: " + pickupCount.ToString() + "/"+ totalPickupCount.ToString() + " Time: " + gameTime.ToString("n2"), style);
 	}
