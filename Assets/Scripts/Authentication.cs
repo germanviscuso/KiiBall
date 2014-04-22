@@ -10,6 +10,7 @@ public class Authentication : MonoBehaviour {
 	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static bool initialized = false;
+	private bool onKiiCallback = false;
 	
 	void Awake(){
 		// Initialize FB SDK 
@@ -75,32 +76,35 @@ public class Authentication : MonoBehaviour {
 	{
 		Util.Log("FB Logged in. Access Token: " + FB.AccessToken);
 		KiiUser user = null;
-		try
-		{
-			user = KiiUser.LoginWithFacebookToken(FB.AccessToken);
-		}
-		catch(Exception e)
-		{
-			Util.LogError("Unable to get Kii user with FB token.");
-			Util.LogError(e.ToString());
-			Util.LogError(e.InnerException.ToString());
-			return;
-		}
+		onKiiCallback = true;
+		KiiUser.LoginWithFacebookToken(FB.AccessToken, (KiiUser user2, Exception e) => {
+			if (e == null) {
+				Debug.Log ("Kii Login completed");
+				user = user2;
+				onKiiCallback = false;
+				Util.Log("Kii Logged in. URI: " + KiiUser.CurrentUser.Uri.ToString());
+				Util.Log("Kii Logged in. Username: " + KiiUser.CurrentUser.Username);
+				// Now you have a logged in Kii user via Facebook ( -> KiiUser.CurrentUser)
+				// And you can update the user attributes from Facebook data
+				/*user.Username = FB.UserId;
+				if(profile != null){
+					//KiiUser.ChangeEmail(facebookEmail); 
+					//KiiUser.ChangePhone(facebookPhone);
+					user.Displayname = profile["first_name"];
+				}
+				user.Update();
+				Util.Log("Current user email is: " + KiiUser.CurrentUser.Email);
+				Util.Log("Current user name is: " + KiiUser.CurrentUser.Displayname);
+				Util.Log("Current user phone is: " + KiiUser.CurrentUser.Phone);*/
+			} else {
+				user = null;
+				onKiiCallback = false;
+				Debug.Log ("Kii Login failed: " + e.ToString());
+				Util.LogError(e.InnerException.ToString());
+				return;
+			}
+		});
 		OnHideUnity (true);
-		Util.Log("Kii Logged in. URI: " + KiiUser.CurrentUser.Uri.ToString());
-		Util.Log("Kii Logged in. Username: " + KiiUser.CurrentUser.Username);
-		// Now you have a logged in Kii user via Facebook ( -> KiiUser.CurrentUser)
-		// And you can update the user attributes from Facebook data
-		/*user.Username = FB.UserId;
-		if(profile != null){
-			//KiiUser.ChangeEmail(facebookEmail); 
-			//KiiUser.ChangePhone(facebookPhone);
-			user.Displayname = profile["first_name"];
-		}
-		user.Update();
-		Util.Log("Current user email is: " + KiiUser.CurrentUser.Email);
-		Util.Log("Current user name is: " + KiiUser.CurrentUser.Displayname);
-		Util.Log("Current user phone is: " + KiiUser.CurrentUser.Phone);*/
 	}
 
 	void OnGUI()
