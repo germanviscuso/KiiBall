@@ -12,59 +12,50 @@ public class Authentication : MonoBehaviour {
 	private static bool initialized = false;
 	private bool onKiiCallback = false;
 	
-	void Awake(){
+	void Awake() {
 		// Initialize FB SDK 
 		if(!FB.IsLoggedIn)
 			OnHideUnity (false);
 		enabled = false;
-		if(!initialized){
+		if(!initialized) {
 			FB.Init(SetInit);
 			initialized = true;
 		}
 	}
 
-	void Start(){
+	void Start() {
 		facebookButton = (Texture2D)Resources.Load("login_with_facebook");
 	}
 
-	private void SetInit()                                                                       
-	{                                                                                            
+	private void SetInit() {                                                                                            
 		Util.Log("SetInit");                                                                  
 		enabled = true; // "enabled" is a property inherited from MonoBehaviour                  
-		if (FB.IsLoggedIn)                                                                       
-		{                                                                                        
+		if (FB.IsLoggedIn) {                                                                                        
 			Util.Log("Already FB logged in");                                                    
 			OnLoggedIn();                                                                        
 		}                                                                                        
 	}                                                                                            
 	
-	private void OnHideUnity(bool isGameShown)                                                   
-	{                                                                                            
+	private void OnHideUnity(bool isGameShown) {                                                                                            
 		Util.Log("OnHideUnity");                                                              
-		if (!isGameShown)                                                                        
-		{                                                                                        
+		if (!isGameShown) {                                                                                        
 			// pause the game - we will need to hide                                             
 			Time.timeScale = 0;                                                                  
 		}                                                                                        
-		else                                                                                     
-		{                                                                                        
+		else {                                                                                        
 			// start the game back up - we're getting focus again                                
 			Time.timeScale = 1;                                                                  
 		}                                                                                        
 	}  
 
-	void LoginCallback(FBResult result)
-	{
+	void LoginCallback(FBResult result) {
 		Util.Log("FB LoginCallback");
-		
-		if (FB.IsLoggedIn)
-		{
+		if (FB.IsLoggedIn) {
 			OnLoggedIn();
 		}
 	}
 
-	void OnLoggedIn()
-	{
+	void OnLoggedIn() {
 		Util.Log("FB Logged in. ID: " + FB.UserId);
 		LoginToKiiViaFacebook();
 		// Reqest player info and profile picture                                                                           
@@ -72,8 +63,7 @@ public class Authentication : MonoBehaviour {
 		//LoadPicture(Util.GetPictureURL("me", 128, 128),MyPictureCallback);    
 	}
 
-	void LoginToKiiViaFacebook ()
-	{
+	void LoginToKiiViaFacebook () {
 		Util.Log("FB Logged in. Access Token: " + FB.AccessToken);
 		KiiUser user = null;
 		onKiiCallback = true;
@@ -95,7 +85,7 @@ public class Authentication : MonoBehaviour {
 					if (e2 == null) {
 						Util.Log ("Kii user update completed");
 					}
-					else{
+					else {
 						Util.LogError ("Kii user update failed: " + e2.ToString());
 					}
 				});
@@ -113,23 +103,19 @@ public class Authentication : MonoBehaviour {
 		OnHideUnity (true);
 	}
 
-	void OnGUI()
-	{	
-		if (!FB.IsLoggedIn)
-		{
+	void OnGUI() {	
+		if (!FB.IsLoggedIn) {
 			GUI.backgroundColor = new Color(0,0,0,0);
 			Rect rect = new Rect(0 , 50, 256, 64);
-			if (GUI.Button(rect, facebookButton)){
+			if (GUI.Button(rect, facebookButton)) {
 				FB.Login("basic_info,email,publish_actions", LoginCallback);
 			}
 		}
 	}
 
-	void APICallback(FBResult result)                                                                                              
-	{                                                                                                                              
+	void APICallback(FBResult result) {                                                                                                                              
 		Util.Log("FB APICallback");                                                                                                
-		if (result.Error != null)                                                                                                  
-		{                                                                                                                          
+		if (result.Error != null){                                                                                                                          
 			Util.LogError(result.Error);                                                                                           
 			// Let's just try again             
 			FB.API("/me?fields=id,name,username,age_range,gender,devices,first_name,last_name,locale,birthday,location,email,friends.limit(100).fields(first_name,id)", Facebook.HttpMethod.GET, APICallback);     
@@ -142,8 +128,7 @@ public class Authentication : MonoBehaviour {
 		if(profile.ContainsKey("first_name"))
 			Util.Log ("Welcome " + profile["first_name"]);
 		Util.Log("Profile keys:");
-		foreach (string key in profile.Keys)
-		{
+		foreach (string key in profile.Keys) {
 			Util.Log(key);
 		}
 		Util.Log(friends.Count.ToString() + " friends retrieved");
