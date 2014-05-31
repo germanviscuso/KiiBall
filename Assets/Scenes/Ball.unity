@@ -17913,10 +17913,10 @@ MonoBehaviour:
   m_Script: {fileID: -1327372794, guid: bfd930a74a0720348bdf7004e0a2a4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppID: f84641d9
-  AppKey: 60fdba74ffdfd672082e5f7bc110b462
-  Site: 0
-  ServerUrl: http://dev-jp.internal.kii.com/api
+  AppID: 9e25236b
+  AppKey: fa32d1723875f34b6c4f15d624b96e40
+  Site: 1
+  ServerUrl: 
 --- !u!4 &403987679
 Transform:
   m_ObjectHideFlags: 0
